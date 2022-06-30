@@ -1,0 +1,75 @@
+.userProfile{
+background: #FFFFFF;
+border: 1px solid #DFE0EB;
+box-sizing: border-box;
+border-radius: 8px;
+padding: 30px 50px;
+}
+
+.file.user{
+    display: table;
+    width: 30%;
+    margin: auto;
+    background: #9D0957;
+    border-radius: 10px;
+    color: white;
+    padding: 12px 30px;
+    font-weight: bold;
+    transition: all ease-in 0.5s;
+  }
+.file.user.disabled, .file.user:disabled {
+    opacity: .65;
+    pointer-events: none;
+}
+input[type="file"].adminphoto {
+    display: none;
+}
+
+.user-lay{
+    width: 50%;
+    margin: auto;
+}
+
+.password-style{
+    background: #F5F0FC;
+    border-radius: 5px;
+    padding: 23px 23px 23px 55px;
+    border: none;
+  }
+  .password-style::placeholder{
+    color: #aaaaaa;
+  }
+  
+   .password-style:focus {
+      box-shadow: none;
+      outline: 0 none;
+      background: #F5F0FC;
+    }
+  
+    .password_icon {
+      position: absolute;
+      left: 20px;
+      top: 10px;
+      color: #0d92d5;
+      cursor: pointer;
+    }
+    .profileImage {
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+    }
+
+/* Media query for smaller phones */
+
+@media (max-width:767px) {
+    .file.user{
+        width: 100%;
+    }
+    .user-lay{
+        width: 100%;
+    }
+    .userProfile{
+        padding: 30px 30px;
+    }
+
+}

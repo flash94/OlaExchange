@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+body{
+  font-family: 'Nunito', sans-serif;
+}
+
+
+
+/* Tacit exchange button styles */
+.btn-blueTacit{
+  background: #1A374E;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 40px;
+  transition: all ease-in .15s;
+}
+
+.btn-blueTacit:hover{
+  background: #2C3A50;
+  color: white;
+}
+
+.btn-pinkTacit{
+  background: #E69A25;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 40px;
+  transition: all ease-in-out .15s;
+}
+
+.btn-pinkTacit:hover{
+  background-color: #EFA128;
+  color: white;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+
