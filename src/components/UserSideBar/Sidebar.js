@@ -1,6 +1,6 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import './sidebar.css'
-import Logo from '../../assets/images/logo.png'
+import Logo from '../../assets/images/logo-white.png'
 // import profile from '../../assets/images/header.png'
 import profile from '../../assets/images/userProfile.svg'
 import { Link, useLocation } from 'react-router-dom';
@@ -62,8 +62,8 @@ const UserSideBar = (props) => {
             >
 
                 {/* logo */}
-                <div className="text-center mt-2">
-                    <img src={Logo} alt="logo" width="192" height="87" />
+                <div className="text-center mt-4">
+                    <img src={Logo} alt="logo" width="100" height="30" />
                 </div>
 
                 {/* nav list */}

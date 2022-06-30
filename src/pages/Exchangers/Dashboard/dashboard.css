@@ -1,5 +1,16 @@
 .TradeLayout{
-    border: 2px solid rgba(8, 152, 215, 0.4);
+    border: 2px solid rgba(247, 147, 26, 0.4);
+    box-sizing: border-box;
+    border-radius: 29.025px;
+    padding: 50px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.TradeLayoutx{
+    background-color: #1A374E;
     box-sizing: border-box;
     border-radius: 29.025px;
     padding: 50px 50px;

@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import { getUserDashboardCount, getUserTransaction } from '../../../store/actions/dashboard';
 import Moment from 'react-moment'
 import Eye from '../../../assets/images/eye.svg'
+import TradePlane from '../../../assets/images/paper-plane.svg'
 
 const UserDashboard = (props) => {
 
@@ -142,11 +143,19 @@ const UserDashboard = (props) => {
                      {/* start trade */}
                      <div className="col-lg-4 mb-4">
                          
-                         <Link to="/user/trade">
-                            <div style={{height: '191.33px', position: 'relative'}}>
+                         <Link to="/start-trade">
+                            <div className="TradeLayoutx">
+                            {/* <div style={{height: '191.33px'}}>
                                 <img src={OtherTrade} className="img-fluid" alt="trade" />
+                            </div> */}
+                            <div>
+                                <img src={TradePlane} className="img-fluid" alt="trade" />
                             </div>
-                            </Link>
+                            <div className="mt-1">
+                                    <h3 style={{color: '#ffffff'}}>Trade Crypto</h3>
+                                </div>     
+                            </div> 
+                         </Link>
 
                      </div>
                 </div>
@@ -175,7 +184,7 @@ const UserDashboard = (props) => {
                           </div>
       
                           <div className="mt-3">
-                              <Link to="/user/trade" className="btn btn-blueTacit">Start Trade</Link>
+                              <Link to="/start-trade" className="btn btn-blueTacit">Start Trade</Link>
                           </div>
       
                       </div>

@@ -79,27 +79,28 @@ export const logOut = () => {
 
 // sign up user functionality
 export const signUp = (user) => {
-  return async (dispatch, getState) => {
-    try {
-      const res = await PostApi("exchanger/user", {
-                   firstName: user.firstName,
-                   lastName: user.lastName,
-                   phoneNumber: user.phoneNumber,
-                   email: user.email,
-                   password: user.password,
-                  }, "", "application/json")
-      if (res.status === 201) {
-        dispatch({ type: "SIGNUP_SUCCESS", data: res.data });
-        cogoToast.success("Registration Successful!, Login to continue");
-      }
-      if(res.status === 400){
-        dispatch({ type: "SIGNUP_FAIL", err: res.data});
-        cogoToast.error('Looks like a user already exist with this credentails!')
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  };
+  return console.log(user)
+  // return async (dispatch, getState) => {
+  //   try {
+  //     const res = await PostApi("exchanger/user", {
+  //                  firstName: user.firstName,
+  //                  lastName: user.lastName,
+  //                  phoneNumber: user.phoneNumber,
+  //                  email: user.email,
+  //                  password: user.password,
+  //                 }, "", "application/json")
+  //     if (res.status === 201) {
+  //       dispatch({ type: "SIGNUP_SUCCESS", data: res.data });
+  //       cogoToast.success("Registration Successful!, Login to continue");
+  //     }
+  //     if(res.status === 400){
+  //       dispatch({ type: "SIGNUP_FAIL", err: res.data});
+  //       cogoToast.error('Looks like a user already exist with this credentails!')
+  //     }
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // };
 };
 
 

@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { connect} from 'react-redux'
 import {Link, useLocation} from 'react-router-dom'
 import './Sidebar.css'
-import Logo from '../../assets/images/logo.png'
+import Logo from '../../assets/images/logo-white.png'
 import profile from '../../assets/images/profile.svg'
 import Bell from '../../assets/images/bell.png'
 import Home from '../../assets/images/home-icon.svg'
