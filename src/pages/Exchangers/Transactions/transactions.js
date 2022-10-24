@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Sidebar from '../../../components/UserSideBar/Sidebar';
 import {connect} from 'react-redux'
 import { getUserTransaction } from '../../../store/actions/dashboard';
-import {Link, useHistory} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import Moment from 'react-moment'
 import DataTable from 'react-data-table-component'
 import Eye from '../../../assets/images/eye.svg'
@@ -14,7 +14,7 @@ const UserTransactions = (props) => {
     const [initialTab, setTab] = useState(1);
     const [tradeName, setTradeName] = useState('Pending')
 
-      const history = useHistory()
+      const navigate = useNavigate()
 
 
     const [tabData] = useState([
@@ -139,7 +139,7 @@ const UserTransactions = (props) => {
 
       
       const handleView = (id) =>{
-          history.push('/trade/'+id)
+          navigate('/trade/'+id)
       }
 
       
@@ -179,7 +179,7 @@ const UserTransactions = (props) => {
                           </div>
       
                           <div className="mt-3">
-                              <Link to="/start-trade" className="btn btn-blueTacit">Start Trade</Link>
+                              <Link to="/start-trade" className="btn btn-blueOla">Start Trade</Link>
                           </div>
       
                       </div>

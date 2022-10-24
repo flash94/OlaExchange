@@ -14,8 +14,8 @@ body{
 
 
 
-/* Tacit exchange button styles */
-.btn-blueTacit{
+/* Ola exchange button styles */
+.btn-blueOla{
   background: #1A374E;
   border-radius: 5px;
   color: white;
@@ -23,12 +23,12 @@ body{
   transition: all ease-in .15s;
 }
 
-.btn-blueTacit:hover{
+.btn-blueOla:hover{
   background: #2C3A50;
   color: white;
 }
 
-.btn-pinkTacit{
+.btn-pinkOla{
   background: #E69A25;
   border-radius: 5px;
   color: white;
@@ -36,7 +36,7 @@ body{
   transition: all ease-in-out .15s;
 }
 
-.btn-pinkTacit:hover{
+.btn-pinkOla:hover{
   background-color: #EFA128;
   color: white;
 }

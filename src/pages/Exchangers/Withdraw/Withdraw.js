@@ -6,7 +6,7 @@ import eye_fill from '../../../assets/images/ri-eye-fill.svg'
 import {Form, Formik} from 'formik'
 import {withdrawValidator} from '../../../validationSchema/validator'
 import { connect } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { clearWithdrawal, getWalletBalance, WithdrawFunds } from '../../../store/actions/wallet';
 
 const UserWithdraw = ({accountDetails, walletBalance, withdraw, clearWithdrawSuccess, withdrawsuccess, fetchWallet}) => {
@@ -18,7 +18,7 @@ const UserWithdraw = ({accountDetails, walletBalance, withdraw, clearWithdrawSuc
     
     const [walletShow, setWalletShow] = useState(false)
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     const [bankInfo, setBankInfo] = useState({});
 
@@ -53,10 +53,10 @@ const UserWithdraw = ({accountDetails, walletBalance, withdraw, clearWithdrawSuc
     if (withdrawsuccess) {
       setTimeout(() => {
         clearWithdrawSuccess();
-        history.push('/dashboard')
+        navigate('/dashboard')
       }, 3000);
     }
-  }, [withdrawsuccess, clearWithdrawSuccess, history]);
+  }, [withdrawsuccess, clearWithdrawSuccess, navigate]);
 
     return ( 
         <>

@@ -9,7 +9,7 @@ export const PostApi = async (url, payload, token, contentType) => {
     const data  = await axios.post(apiUrl + `${url}`, payload, {
         headers: {
             Accept: 'application/json',
-            Authorization: token,
+            token: token,
             contentType: contentType
           }
     });

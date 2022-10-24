@@ -15,7 +15,7 @@ const Footer = () => {
                             <img src={Logo} className="img-fluid" alt="logo" />
                         </div>
                         <p className="mt-3 mb-0" style={{fontSize: 14}}>
-                        OlaExchange is the no 1 trading platform where you can exchange <br/> your giftcards for cash at maximum rates.
+                        OlaExchange is the no 1 trading platform where you can exchange <br/> your cryptos for cash at maximum rates.
                         </p>
                         {/* brands */}
                         <div className="mt-3" style={{display: 'flex'}}>

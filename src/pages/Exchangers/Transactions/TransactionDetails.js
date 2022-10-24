@@ -22,12 +22,12 @@ const UserTransactionDetails = (props) => {
           <ImageZoom
             image={{
               src: item,
-              alt: "giftcards",
+              alt: "cryptos",
               className: "transactImageSize",
             }}
             zoomImage={{
               src: item,
-              alt: "giftcards",
+              alt: "cryptos",
             }}
           />
         </div>
@@ -283,7 +283,7 @@ const UserTransactionDetails = (props) => {
                   <Link
                     to="/start-trade"
                     type="submit"
-                    className="btn btn-pinkTacit btn-transact"
+                    className="btn btn-pinkOla btn-transact"
                   >
                     Start Another Trade
                   </Link>

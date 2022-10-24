@@ -191,7 +191,7 @@ const Steps = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-pinkTacit mt-1">Register</button>
+                            className="btn btn-pinkOla mt-1">Register</button>
                             </div>
                             
                       </Form>
@@ -277,7 +277,7 @@ const Steps = (props) => {
                 <div className="text-center mt-4">
                      <button
                      onClick={handleShowRegister}
-                      className="btn btn-pinkTacit ">Register Now</button>
+                      className="btn btn-pinkOla ">Register Now</button>
                      {/* <div className="mt-2">
                          <p style={{color: '#2C3A50', fontSize: 14, fontWeight: 'bold'}}>To Start Earning</p>
                      </div> */}

@@ -8,12 +8,12 @@ import {Form, Formik} from 'formik'
 import {buyElecValidator} from '../../../validationSchema/validator'
 import { getWalletBalance } from '../../../store/actions/wallet';
 import { clearMeterDetails, clearPayStatus, getBillerCategories, PayBill, validateMeterDetails } from '../../../store/actions/bills';
-import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cogoToast from 'cogo-toast';
 
 const BuyElectricityPage = ({walletBalance, fetchWallet, fetchCategory, category, pay, clearPay, paysuccess, validateMeter, meterdetails, validMeter, invalidMeter, loader, clearDetails}) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         clearDetails()
@@ -96,11 +96,11 @@ const BuyElectricityPage = ({walletBalance, fetchWallet, fetchCategory, category
      useEffect(()=>{
         if(paysuccess){
             setTimeout(()=>{
-                history.push('/my-wallet')
+                navigate('/my-wallet')
             },3000)
         clearPay()
         }
-    },[history, paysuccess, clearPay])
+    },[navigate, paysuccess, clearPay])
 
 
     return (  

@@ -10,7 +10,7 @@ const initState = {
     Trades: [],
     declineloader: false,
     approveloader: false,
-    giftcards: []
+    cryptos: []
   };
   
   
@@ -121,7 +121,7 @@ const initState = {
       case 'GiftCards':
         return{
           ...state,
-          giftcards: action.data
+          cryptos: action.data
         }
       default:
         return state;

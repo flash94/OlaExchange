@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import UserSideBar from '../../../components/UserSideBar/Sidebar';
 import './dashboard.css'
 import OtherTrade from '../../../assets/images/OthersTrade.svg'
-import {Link, useHistory} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import DataTable from 'react-data-table-component'
 import {connect} from 'react-redux'
 import { getUserDashboardCount, getUserTransaction } from '../../../store/actions/dashboard';
@@ -16,7 +16,7 @@ const UserDashboard = (props) => {
 
     const [status] = useState("Pending")
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     // make call to fetch dashboard count
     useEffect(() => {
@@ -77,7 +77,7 @@ const UserDashboard = (props) => {
       ];
 
       const handleView = (id) =>{
-        history.push('/user/transaction/'+id)
+        navigate('/user/transaction/'+id)
       }
 
     //   get badge colors for payment
@@ -184,7 +184,7 @@ const UserDashboard = (props) => {
                           </div>
       
                           <div className="mt-3">
-                              <Link to="/start-trade" className="btn btn-blueTacit">Start Trade</Link>
+                              <Link to="/start-trade" className="btn btn-blueOla">Start Trade</Link>
                           </div>
       
                       </div>

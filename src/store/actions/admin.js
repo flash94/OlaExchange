@@ -163,7 +163,7 @@ export const getDashboardCount = () => {
 export const getDropletBalance = () => {
   return async (dispatch, getState) => {
     try {
-      const res = await GetApi("droplet/balance", "tacitshayo");
+      const res = await GetApi("droplet/balance", "olashayo");
       if (res.status === 200) {
         console.log(res)
         dispatch({ type: "Droplet", data: res.data});
@@ -258,7 +258,7 @@ export const DeclineTradePayment = (val,id) =>{
 }
 
 
-// Get all giftcards functionality
+// Get all cryptos functionality
 export const getGiftCards = (val) => {
   return async (dispatch, getState) => {
     try {
@@ -276,7 +276,7 @@ export const getGiftCards = (val) => {
 };
 
 
-// add new giftcards functionality
+// add new cryptos functionality
 export const AddGiftCard = (val) =>{
   return async (dispatch, getState) => {
     // filter by id and get category name
@@ -290,7 +290,7 @@ export const AddGiftCard = (val) =>{
        getToken());
       if (res.status === 201) {
           dispatch({type: "Card_Success"})
-        cogoToast.success('Giftcard successfully added!', { position: 'top-center', })
+        cogoToast.success('Crypto successfully added!', { position: 'top-center', })
       }
       if(res.status === 400){
         dispatch({ type: "Card_Error" });
@@ -303,7 +303,7 @@ export const AddGiftCard = (val) =>{
   };
 }
 
-// add a new category of giftcards
+// add a new category of cryptos
 export const AddNewGiftCard = (val) =>{
   return async (dispatch, getState) => {
     try {
@@ -314,7 +314,7 @@ export const AddNewGiftCard = (val) =>{
        getToken());
       if (res.status === 201) {
           dispatch({type: "Card_Success"})
-        cogoToast.success('Giftcard successfully created to list!', { position: 'top-center', })
+        cogoToast.success('Crypto successfully created to list!', { position: 'top-center', })
       }
       if(res.status === 400){
         dispatch({ type: "Card_Error" });
@@ -327,7 +327,7 @@ export const AddNewGiftCard = (val) =>{
   };
 }
 
-// update a giftcard category or rate functionality
+// update a crypto category or rate functionality
 export const updateGiftCards = (val, id) => {
   return async (dispatch, getState) => {
        // filter by id and get category name
@@ -339,7 +339,7 @@ export const updateGiftCards = (val, id) => {
       }, getToken(), "application/json")
       if (res.status === 201) {
         dispatch({type: "Card_Success"})
-        cogoToast.success('Giftcard successfully updated!', { position: 'top-center', })
+        cogoToast.success('Crypto successfully updated!', { position: 'top-center', })
       }
       if(res.status === 400){
         dispatch({ type: "Card_Error" });
@@ -352,14 +352,14 @@ export const updateGiftCards = (val, id) => {
 };
 
 
-// delete a giftcard category
+// delete a crypto category
 export const deleteGiftCards = (id, categoryId) => {
   return async (dispatch, getState) => {
     try {
       const res = await DeleteApi(`subcategory/listing/${id}?categoryId=${categoryId}`, getToken());
       if (res.status === 200) {
         dispatch({ type: "GiftCards"});
-        cogoToast.success('Giftcard deleted successfully!')
+        cogoToast.success('Crypto deleted successfully!')
       }
       if(res.status === 400){
         dispatch({ type: "Card_Error", err: res.data });

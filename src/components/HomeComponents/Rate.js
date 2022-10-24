@@ -8,11 +8,13 @@ import Nigeria from  '../../assets/images/nigerialogo.svg'
 const RateCalculator = (props) => {
 
 
-    const {fetchCategory, category, fetchSubCategory, subcategory, calcRate, amount} = props
+   // const {fetchCategory, category, fetchSubCategory, subcategory, calcRate, amount} = props
+    const {category, fetchSubCategory, subcategory, calcRate, amount} = props
 
-    useEffect(() =>{
-          fetchCategory()
-    }, [fetchCategory])
+    // useEffect(() =>{
+    //     console.log("no category")
+    //       fetchCategory()
+    // }, [fetchCategory])
 
 
     const handleSubmit = (values, setSubmitting,)  =>{
@@ -29,7 +31,7 @@ const RateCalculator = (props) => {
 
 
     const handleSubCategory = (val) =>{
-        fetchSubCategory(val)
+        //fetchSubCategory(val)
     }
 
     return ( 
@@ -159,7 +161,7 @@ const RateCalculator = (props) => {
                      <button 
                       type="submit"
                       disabled={isSubmitting}
-                     className="btn btn-pinkTacit calc-size">Start Trade</button>
+                     className="btn btn-pinkOla calc-size">Start Trade</button>
                     </div>
                  </Form>
                   )}
@@ -182,8 +184,8 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return{
-        fetchCategory: () => dispatch(getRateCategory()),
-        fetchSubCategory: (id) => dispatch(getRateSubCategory(id)),
+        //fetchCategory: () => dispatch(getRateCategory()),
+        //fetchSubCategory: (id) => dispatch(getRateSubCategory(id)),
         calcRate: (amount, id) => dispatch(getRateValue(amount, id))
     }
 }

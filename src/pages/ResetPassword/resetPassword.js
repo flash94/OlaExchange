@@ -1,16 +1,16 @@
 import React, {useEffect} from "react";
 import Logo from "../../assets/images/logo.png";
-import WelcomeImg from "../../assets/images/adminlogin.png";
+import WelcomeImg from "../../assets/images/adminLoginSide.jpg";
 import { Form, Formik } from "formik";
 import { resetPasswordValidator } from "../../validationSchema/validator";
 import { connect } from "react-redux";
 import {ResetPassword, verifyResetCode  } from '../../store/actions/auth';
-import { useLocation, Link, useHistory } from "react-router-dom";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const UserReset = ({ Reset, verifyCode, code,  }) => {
   const search = useLocation().search;
 
-  const history = useHistory()
+  const navigate = useNavigate()
 
   // Verify reset code sent to email if valid!
   useEffect(() => {
@@ -29,7 +29,7 @@ const UserReset = ({ Reset, verifyCode, code,  }) => {
     await Reset(creds);
 
     setTimeout(() => {
-      history.push('/')
+      navigate('/')
     }, 2000);  
 
   };
@@ -154,7 +154,7 @@ const UserReset = ({ Reset, verifyCode, code,  }) => {
                      <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-pinkTacit mt-2">Reset Password</button>
+                            className="btn btn-pinkOla mt-2">Reset Password</button>
                       </Form>
                   )}
 

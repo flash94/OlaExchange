@@ -42,7 +42,7 @@ Kindly check your spam folder if you don't find it in your inbox. Our support te
             <>
           This is a rather rhetorical question as no specific or general answer can be given. Crypto values and rates vary from time to time depending on several factors. So the Crypto that has the best rate at this moment might be different in the next hour. 
 
-We advise that you always use our rate calculator to check current rates and prices. Be rest assured that Tacit Exchange provides you with the best rates always.
+We advise that you always use our rate calculator to check current rates and prices. Be rest assured that Ola Exchange provides you with the best rates always.
 
 If you need any specific help or more advice concerning this, you can reach out to our customer support via live chat or call/WhatsApp: +2348168516315
            </>

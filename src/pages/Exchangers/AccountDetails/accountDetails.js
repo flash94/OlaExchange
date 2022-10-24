@@ -256,7 +256,7 @@ const UserAccount = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-blueTacit">Add Account</button>
+                            className="btn btn-blueOla">Add Account</button>
                             </div>
                             
                       </Form>
@@ -395,7 +395,7 @@ const UserAccount = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-blueTacit">Update Account</button>
+                            className="btn btn-blueOla">Update Account</button>
                             </div>
                             
                       </Form>
@@ -433,7 +433,7 @@ const UserAccount = (props) => {
                          <div className="mt-1 text-center">
                             <button 
                             onClick={handleShow}
-                            className="btn btn-blueTacit">Add Other Account</button>
+                            className="btn btn-blueOla">Add Other Account</button>
                          </div>
 
                      </div>
@@ -452,7 +452,7 @@ const UserAccount = (props) => {
                     <div className="mt-3">
                         <button 
                         onClick={handleShow}
-                        className="btn btn-blueTacit">Add Account</button>
+                        className="btn btn-blueOla">Add Account</button>
                     </div>
 
                     </div>

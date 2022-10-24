@@ -1,36 +1,25 @@
 import React from 'react';
-import {Redirect, Route} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {Navigate, Route, useLocation} from 'react-router-dom'
+import { useSelector } from "react-redux";
 
-const UserRoute = ({
-    component: Component,
-    isAuthenticated,
-    role,
-    ...rest
-}) => {
-    return ( 
-        <Route
-        {...rest}
-        render={(props) =>
-        role !== 'Exchanger' ? (
-        <>
-         <Redirect to={'/'} />
-        </>
-      ) : (
-        <Component {...props} />
-      )
+const UserRoute = ({children}) => {
+  const {isAuthenticated} = useSelector((state) => state.auth)
+  const location = useLocation();
+
+  return (
+    <>
+    {
+         !isAuthenticated ? 
+          <Navigate to ="/"
+            replace
+            state={{path: location.pathname}}
+             />
+            :
+            children
         }
-     />
-     );
-}
+    </>
+  );
+};
 
 
-const mapStateToProps = (state) =>{
-    return{
-        isAuthenticated: state.auth.isAuthenticated,
-        role: state.auth.role
-    }
-}
-
-export default connect(mapStateToProps)(UserRoute);
-
+export default UserRoute;

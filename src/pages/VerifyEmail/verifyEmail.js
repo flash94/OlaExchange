@@ -69,7 +69,7 @@ if(link) {
                 </div>
 
                 <div className="mt-2 text-center">
-                    <p className="mb-0">Volla, Thanks for choosing Tacit Exchange!</p>
+                    <p className="mb-0">Volla, Thanks for choosing Ola Exchange!</p>
                 </div>
 
             </div>

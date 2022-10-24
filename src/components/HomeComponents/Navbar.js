@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import Logo from '../../assets/images/logo.png'
-import {useLocation, useHistory} from 'react-router-dom'
-import {HashLink as Link,} from 'react-router-hash-link'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import {Modal} from 'react-bootstrap/'
 import loginCircle from '../../assets/images/loginCircle.svg'
 import loginCurve from '../../assets/images/curved.svg'
 import registerCircle from '../../assets/images/registerCircle.svg'
 import closeIcon from '../../assets/images/closeIcon.svg'
 import forgotCircle from '../../assets/images/forgotCircle.svg'
+import {useDispatch, useSelector} from 'react-redux'
 import {Form, Formik} from 'formik'
 import { loginValidator, registerValidator, forgotPasswordValidator } from "../../validationSchema/validator";
 import {connect} from 'react-redux'
@@ -19,7 +19,9 @@ const Navbar = (props) => {
 
     const [navShow, setnavShow] = useState(false);
 
-    const history = useHistory()
+    // const history = useHistory()
+
+    const navigate = useNavigate()
 
 
     // check for which path you are on
@@ -31,6 +33,7 @@ const Navbar = (props) => {
     const [showRegister, setShowRegister] = useState(false);
 
     const [showForgot, setShowForgot] = useState(false);
+    const [navChangedToAbout, setNavChangedToAbout] = useState(false)
 
     // login modal
   const handleClose = () => setShow(false);
@@ -73,11 +76,14 @@ const Navbar = (props) => {
         await login(values);
       }
 
-    useEffect(() =>{
+      useEffect(() =>{
         if(isAuthenticated){
-          history.push('/dashboard')
+            navigate('/dashboard')
         }
-      },[isAuthenticated, history])
+    },[isAuthenticated, navigate])
+        // let isAuthenticated = false;
+        //console.log(isAuthenticated + "xxxxxxxxxxxxxxxxxx")
+        //history.push('/dashboard')
 
     //   register func
     const handleRegisterSubmit = async (values) =>{
@@ -191,7 +197,7 @@ const Navbar = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-blueTacit">Login</button>
+                            className="btn btn-blueOla">Login</button>
                             </div>
                             
                       </Form>
@@ -355,7 +361,7 @@ const Navbar = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-pinkTacit mt-1">Register</button>
+                            className="btn btn-pinkOla mt-1">Register</button>
                             </div>
                             
                       </Form>
@@ -438,7 +444,7 @@ const Navbar = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-blueTacit">Submit</button>
+                            className="btn btn-blueOla">Submit</button>
                             </div>
                             
                       </Form>
@@ -486,10 +492,10 @@ const Navbar = (props) => {
                                 <Link to="/#rate-calculator">Rate Calculator</Link>
                             </li>
                             <li className="headerbtn">
-                                <Link to="/" className="btn btn-blueTacit"  onClick={handleShow}>Login</Link>
+                                <Link to="/" className="btn btn-blueOla"  onClick={handleShow}>Login</Link>
                             </li>
                             <li className="headerbtn">
-                                <Link to="/" className="btn btn-pinkTacit" onClick={handleShowRegister}>Register</Link>
+                                <Link to="/" className="btn btn-pinkOla" onClick={handleShowRegister}>Register</Link>
                             </li>
                         </ul>
                     </nav>

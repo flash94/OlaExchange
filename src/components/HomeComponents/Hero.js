@@ -73,7 +73,7 @@ const HeroSection = (props) => {
                     handleRegisterSubmit(values, setSubmitting)
                     }
                 validationSchema={registerValidator}
-                initialValues={{firstName: "", lastName: "", phoneNumber: "",  email: "", password: "", confirm_password: ""}}
+                initialValues={{firstName: "", lastName: "", phoneNumber: "", userName:"", email: "", password: "", confirm_password: ""}}
               >
                   {({
                       handleChange,
@@ -117,6 +117,23 @@ const HeroSection = (props) => {
                                         {touched.lastName && errors.lastName}
                                     </small>
                             </div>
+
+                            {/* username */}
+                            <div className="form-group input-container mt-2">
+                                <input
+                                    className="form-control input-style"
+                                    type="text"
+                                    placeholder="Username"
+                                    onBlur={handleBlur}
+                                    onChange={handleChange}
+                                    id="userName"
+                                    value={values.userName}
+                                />
+                                   <small style={{ color: "#dc3545" }}>
+                                        {touched.userName && errors.userName}
+                                    </small>
+                            </div>
+
 
                             {/* email */}
                             <div className="form-group input-container mt-2">
@@ -189,7 +206,7 @@ const HeroSection = (props) => {
                             <button 
                             type="submit"
                             disabled={isSubmitting}
-                            className="btn btn-pinkTacit mt-1">Register</button>
+                            className="btn btn-pinkOla mt-1">Register</button>
                             </div>
                             
                       </Form>
@@ -215,7 +232,7 @@ const HeroSection = (props) => {
                         <div className="mt-3">
                             <button 
                             onClick={handleShowRegister}
-                            className="btn btn-pinkTacit">Register</button>
+                            className="btn btn-pinkOla">Register</button>
                         </div>  
                     </div>
                    

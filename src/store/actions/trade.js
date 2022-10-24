@@ -8,7 +8,7 @@ const getToken = () => {
 }
 
 
-// Upload a giftcard image
+// Upload a crypto image
 export const UploadGiftCardImage = (value, index) => {
     return async (dispatch, getState) => {
       // show a spinner or progress bar

@@ -166,7 +166,7 @@ const ContactPage = (props) => {
                                             <button 
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="btn btn-blueTacit">Send Message</button>
+                                            className="btn btn-blueOla">Send Message</button>
                                             </div>
                                             
                                     </Form>

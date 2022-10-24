@@ -18,36 +18,36 @@ const GiftCards = () => {
                 <div className="row mt-5">
                     <div className="col-lg-2 col-6 mb-4">
                         <div>
-                            <img src={Bitcoin} className="img-fluid" alt="giftcards" />
+                            <img src={Bitcoin} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
 
                     <div className="col-lg-2 col-6">
                         <div>
-                            <img src={Ripple} className="img-fluid" alt="giftcards" />
+                            <img src={Ripple} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
 
                     <div className="col-lg-2 col-6 mb-4">
                         <div>
-                            <img src={Bnb} className="img-fluid" alt="giftcards" />
+                            <img src={Bnb} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
 
                     <div className="col-lg-2 col-6">
                         <div>
-                            <img src={Eth} className="img-fluid" alt="giftcards" />
+                            <img src={Eth} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
                     <div className="col-lg-2 col-6">
                         <div>
-                            <img src={Usdt} className="img-fluid" alt="giftcards" />
+                            <img src={Usdt} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
 
                     <div className="col-lg-2 col-6">
                         <div>
-                            <img src={Trade} className="img-fluid" alt="giftcards" />
+                            <img src={Trade} className="img-fluid" alt="cryptos" />
                         </div>
                     </div>
                 </div>

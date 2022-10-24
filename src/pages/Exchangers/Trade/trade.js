@@ -9,7 +9,7 @@ import { clearTradeAmount, getRateCategory, getRateSubCategory, getTermsAndCondi
 import './trade.css'
 import cogoToast from "cogo-toast";
 import { clearCardImages, createTrade, UploadGiftCardImage, clearConfirmStatus } from '../../../store/actions/trade';
-import {useHistory} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 import accountCircle from '../../../assets/images/accountCircle.svg'
 import closeIcon from '../../../assets/images/closeIcon.svg'
 import Modal from 'react-bootstrap/Modal'
@@ -48,7 +48,7 @@ const UserTrade = (props) => {
 
     const ref = useRef()
 
-    const history = useHistory()
+    const navigate = useNavigate()
 
     useEffect(() =>{
         fetchCategory()
@@ -123,7 +123,7 @@ const removeImage = (index) =>{
     }
     // check if at least an image of the card is added
     else if(preview.length === 0){
-        cogoToast.warn('Kindly attach at least a giftcard!!!')
+        cogoToast.warn('Kindly attach at least a crypto!!!')
     }
     else if(preview.length === 11){
       cogoToast.warn('The maximum you can attach is 10 for a trade initialization')
@@ -172,7 +172,7 @@ const CloseTrade = () =>{
         emptyImage()   
         //    empty Amount you get too
         emptyamount()
-        history.push('/trades')
+        navigate('/trades')
     }, 500); 
     
 }
@@ -183,7 +183,7 @@ const CloseTrade = () =>{
 
 const handleCalculation = (amount, categoryId, giftname) =>{
     if(giftname === ""){
-        cogoToast.warn("Oops!, looks like you haven't selected a giftcard")
+        cogoToast.warn("Oops!, looks like you haven't selected a crypto")
     }
     else if(categoryId === ""){
         cogoToast.warn("Oops!, looks like you haven't selected a category")
@@ -236,7 +236,7 @@ const handleCalculation = (amount, categoryId, giftname) =>{
                 type="submit"
                 disabled={confirmed}
                 onClick={confirmTrade}
-                className="btn btn-blueTacit">Confirm Trade</button>
+                className="btn btn-blueOla">Confirm Trade</button>
                 </div>
              
             </div>
@@ -272,7 +272,7 @@ const handleCalculation = (amount, categoryId, giftname) =>{
                 <button 
                 type="submit"
                 onClick={CloseTrade}
-                className="btn btn-blueTacit ">OK</button>
+                className="btn btn-blueOla ">OK</button>
                 </div>
              
             </div>
@@ -561,7 +561,7 @@ const handleCalculation = (amount, categoryId, giftname) =>{
                       type="submit"
                       disabled={isSubmitting}
                                         
-                     className="btn btn-pinkTacit trade-size">Start Trade</button>
+                     className="btn btn-pinkOla trade-size">Start Trade</button>
                     </div>
                  </Form>
                   )}

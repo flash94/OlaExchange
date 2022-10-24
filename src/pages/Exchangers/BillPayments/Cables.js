@@ -8,12 +8,12 @@ import {Form, Formik} from 'formik'
 import {cableValidator} from '../../../validationSchema/validator'
 import { getWalletBalance } from '../../../store/actions/wallet';
 import { clearPayStatus, getBillerCategories, PayBill } from '../../../store/actions/bills';
-import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const CablesPage = ({walletBalance, fetchWallet,fetchCategory, category, pay, clearPay, paysuccess}) => {
 
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(()=>{
         fetchWallet()
@@ -60,11 +60,11 @@ const CablesPage = ({walletBalance, fetchWallet,fetchCategory, category, pay, cl
      useEffect(()=>{
         if(paysuccess){
             setTimeout(()=>{
-                history.push('/my-wallet')
+                navigate('/my-wallet')
             },3000)
         clearPay()
         }
-    },[history, paysuccess, clearPay])
+    },[navigate, paysuccess, clearPay])
 
 
     return ( 

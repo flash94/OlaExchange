@@ -1,5 +1,6 @@
 import {GetApi, PostApi} from '../helpers'
 import cogoToast from "cogo-toast";
+import axios from 'axios';
 
 
 
@@ -7,7 +8,7 @@ import cogoToast from "cogo-toast";
 export const getRateCategory = (val) => {
   return async (dispatch, getState) => {
     try {
-      const res = await GetApi("category/listing", "tacitshayo");
+      const res = await axios.get("https://api.cardtonic.com/api/admincategorylisting");
       if (res.status === 200) {
         dispatch({ type: "Category", data: res.data});
       }
@@ -37,7 +38,7 @@ export const getRateCategory = (val) => {
 export const getRateSubCategory = (val) => {
   return async (dispatch, getState) => {
     try {
-      const res = await GetApi("subcategory/listing/"+val, "tacitshayo");
+      const res = await GetApi("subcategory/listing/"+val, "olashayo");
       if (res.status === 200) {
         dispatch({ type: "subCategory", data: res.data});
       }

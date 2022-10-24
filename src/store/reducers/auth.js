@@ -1,4 +1,4 @@
-
+import jwt_decode from "jwt-decode";
 
 const initState = {
   isAuthenticated: false,
@@ -25,22 +25,30 @@ const initState = {
 const authReducer = (state = initState, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
-      localStorage.setItem("token", action.data.token)
+      //alert("x");
+      var data = action.data.data
+      localStorage.setItem("token", data)
+      var stateData = jwt_decode(data);
+      console.log(stateData.user)
+      console.log("ekule o")
+      //var userRole = (stateData.user.role[0] == undefined) ? "User" : stateData.user.role[0];
+      var userRole = "Admin";
+      
         return {
               ...state,
               loading: false,
               isAuthenticated: true,
-              token: action.data.token,
-              firstname: action.data.profile.firstName,
-              lastname: action.data.profile.lastName,
-              email: action.data.profile.email,
-              id: action.data.profile.id,
-              phoneNumber: action.data.profile.phoneNumber,
-              isVerified: action.data.profile.isVerified,
-              isEnabled: action.data.profile.isEnabled,
-              role: action.data.profile.role,
-              profilePic: action.data.profile.profilePic,
-              accountDetails: action.data.profile.accountDetails
+              token: stateData.user.token,
+              firstname: stateData.user.firstName,
+              lastname: stateData.user.lastName,
+              email: stateData.user.email,
+              id: stateData.user._id,
+              phoneNumber: stateData.user.phoneNumber,
+              isVerified: false,
+              isEnabled: false,
+              role: userRole,
+              profilePic: "",
+              accountDetails: []
           }
     case 'PasswordChanged':
       return{

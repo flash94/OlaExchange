@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import { ChangePassword, UploadPhoto } from '../../../store/actions/auth';
 import { Form, Formik } from "formik";
 import {ChangePasswordValidator} from '../../../validationSchema/validator'
-import {useHistory} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
 
 const UserProfile = (props) => {
 
@@ -14,7 +14,7 @@ const UserProfile = (props) => {
 
     const fileRef = useRef(null)
 
-    const history = useHistory()
+    const navigate = useNavigate()
     
     const [passwordShown, setPasswordShown] = useState(false);
     const [passwordNew, setPasswordNew] = useState(false);
@@ -47,9 +47,9 @@ const UserProfile = (props) => {
       //  route to login after successful changed password
       useEffect(() =>{
         if(loading){
-          history.push("/")
+          navigate("/")
         }
-     },[loading, history])
+     },[loading, navigate])
 
 
 
@@ -244,7 +244,7 @@ const UserProfile = (props) => {
                     <div className="text-center mt-4">
                       <button 
                        type="submit"
-                      disabled={isSubmitting} className="btn btn-pinkTacit">
+                      disabled={isSubmitting} className="btn btn-pinkOla">
                         Save Password
                       </button>
                     </div>

@@ -2,9 +2,11 @@ import {PostApi, PutApi, GetApi, DeleteApi} from '../helpers'
 import cogoToast from "cogo-toast";
 import axios from 'axios'
 import {apiUrl} from '../config'
+import jwt_decode from "jwt-decode";
 
 
 const getToken = () => {
+ alert ("getting token");
 	const token = localStorage.getItem("token");
 	return token
 }
@@ -13,20 +15,30 @@ const getToken = () => {
 export const loginUser = (user) => {
   return async (dispatch, getState) => {
     try {
-      const res = await PostApi("authenticate", {...user}, "", "application/json")
-      if (res.status === 200) {
-        let role = res.data.profile.role
+      const res = await PostApi("account/login", {...user}, "", "application/json")
+      if (res.status === 201) {
+        let token= res.data.data
+        console.log(token)
+        var data = jwt_decode(token);
+        console.log(data)
+        var role = (data.user.role[0] == undefined) ? "user" : data.user.role[0];
+        //var role =  "user"
+        console.log(role)
+        
         switch(role){
-          case 'Exchanger':
-            dispatch({ type: "LOGIN_SUCCESS", data: res.data });
-             cogoToast.success('Login Successful!', { position: 'bottom-right', })
+          case 'user':
+            console.log("inside")
+            dispatch({ type: "LOGIN_SUCCESS", data: res.data});
+           
+            //  cogoToast.success('Login Successful!', { position: 'bottom-right', })
+             alert ("I am here")
             break;
           default:
             cogoToast.error('User not authorized!')
             break;
         } 
       }
-      if(res.status === 400){
+      if(res.status === 401){
         dispatch({ type: "LOGIN_FAIL", err: res.data});
         cogoToast.error(`${res.data.message}`)
       }
@@ -40,16 +52,25 @@ export const loginUser = (user) => {
 // administrator login
 export const loginAdmin = (user) => {
   return async (dispatch, getState) => {
+    // dispatch({ type: "LOGIN_SUCCESS"});
+    //          cogoToast.success('Login Successful!', { position: 'bottom-right', })
     try {
-      const res = await PostApi("authenticate", {...user}, "", "application/json")
-      if (res.status === 200) {
-        let role = res.data.profile.role
+      const res = await PostApi("account/login", {...user}, "", "application/json")
+      if (res.status === 201) {
+        let token= res.data.data
+        console.log(token)
+        var data = jwt_decode(token);
+        console.log(data.user.role[0])
+        var role = (data.user.role[0] == undefined) ? "Admin" : data.user.role[0];
+        //var role =  "user"
+        console.log(role)
+        //let role = res.data.profile.role
         switch(role){
-          case 'Admin':
+          case 'superadmin':
             dispatch({ type: "LOGIN_SUCCESS", data: res.data });
              cogoToast.success('Login Successful!', { position: 'bottom-right', })
             break;
-          case 'SubAdmin':
+          case 'manager':
             dispatch({ type: "LOGIN_SUCCESS", data: res.data });
             cogoToast.success('Login Successful!', { position: 'bottom-right', })
               break;
@@ -79,30 +100,65 @@ export const logOut = () => {
 
 // sign up user functionality
 export const signUp = (user) => {
-  return console.log(user)
-  // return async (dispatch, getState) => {
-  //   try {
-  //     const res = await PostApi("exchanger/user", {
-  //                  firstName: user.firstName,
-  //                  lastName: user.lastName,
-  //                  phoneNumber: user.phoneNumber,
-  //                  email: user.email,
-  //                  password: user.password,
-  //                 }, "", "application/json")
-  //     if (res.status === 201) {
-  //       dispatch({ type: "SIGNUP_SUCCESS", data: res.data });
-  //       cogoToast.success("Registration Successful!, Login to continue");
-  //     }
-  //     if(res.status === 400){
-  //       dispatch({ type: "SIGNUP_FAIL", err: res.data});
-  //       cogoToast.error('Looks like a user already exist with this credentails!')
-  //     }
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // };
+  console.log(user)
+  return async (dispatch, getState) => {
+    try {
+      const res = await PostApi("user", {
+                   firstname: user.firstName,
+                   lastname: user.lastName,
+                   phoneNumber: user.phoneNumber,
+                   email: user.email,
+                   username: user.userName,
+                   loginProfile :{
+                    password: user.password,
+                }
+                  }, "", "application/json")
+      if (res.status === 201) {
+        dispatch({ type: "SIGNUP_SUCCESS", data: res.data });
+        cogoToast.success("Registration Successful!, Login to continue");
+      }
+      if(res.status === 400){
+        dispatch({ type: "SIGNUP_FAIL", err: res.data});
+        cogoToast.error('Looks like a user already exist with this credentails!')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  };
 };
 
+
+// sign up an admin functionality(subadmin)
+export const signUpAdmin = (user) => {
+  console.log("signup Admin")
+  let tk = "bearer " +localStorage.getItem("token")
+  alert(tk)
+  return async (dispatch, getState) => {
+    try {
+      const res = await PostApi("admin", {
+                   firstname: user.firstname,
+                   lastname: user.lastname,
+                   username: user.email,
+                   phoneNumber: user.phoneNumber,
+                   email: user.email, 
+                   loginProfile :{
+                    password: user.password
+                    },
+                   role: "Manager"
+                  }, tk, "application/json")
+      if (res.status === 201) {
+        dispatch({ type: "SIGNUP_SUCCESS", data: res.data });
+        cogoToast.success("Manager created successfully!");
+      }
+      if(res.status === 400){
+        dispatch({ type: "SIGNUP_FAIL", err: res.data});
+        cogoToast.error('Email already exists!!!')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  };
+};
 
 // check for email verification link code if clicked or not
 export const getEmailVerify = (val) => {

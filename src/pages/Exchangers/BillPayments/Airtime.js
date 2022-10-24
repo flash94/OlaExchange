@@ -9,14 +9,15 @@ import {airtimeValidator} from '../../../validationSchema/validator'
 import Nigeria from  '../../../assets/images/nigerialogo.svg'
 import { getWalletBalance } from '../../../store/actions/wallet';
 import { clearPayStatus, getBillerCategories, PayBill } from '../../../store/actions/bills';
-import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const AirtimePage = ({walletBalance, fetchWallet,fetchCategory, category, pay, clearPay, paysuccess}) => {
 
     const [walletShow, setWalletShow] = useState(false)
 
-    const history = useHistory();
+    const navigate = useNavigate()
+
 
     useEffect(()=>{
         fetchWallet()
@@ -58,11 +59,11 @@ const AirtimePage = ({walletBalance, fetchWallet,fetchCategory, category, pay, c
     useEffect(()=>{
         if(paysuccess){
             setTimeout(()=>{
-                history.push('/my-wallet')
+                navigate('/my-wallet')
             },3000)
         clearPay()
         }
-    },[history, paysuccess, clearPay])
+    },[navigate, paysuccess, clearPay])
 
 
 

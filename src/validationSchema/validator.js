@@ -43,6 +43,7 @@ export const resetPasswordValidator = Yup.object({
 export const registerValidator = Yup.object({
   firstName: Yup.string().required("Firstname is required"),
   lastName: Yup.string().required("Lastname is required"),
+  userName: Yup.string().required("Username is required"),
   phoneNumber: Yup.string()
   .min(11, 'Phone number cannot be less than 11 digits')
   .max(11, 'Exceeded characters for phone number')
@@ -62,6 +63,7 @@ export const registerValidator = Yup.object({
 export const RegisterAdminValidator = Yup.object({
   firstname: Yup.string().required("Firstname is required"),
   lastname: Yup.string().required("Lastname is required"),
+  //username: Yup.string().required("Username is required"),
   phoneNumber: Yup.string()
   .min(11, 'Phone number cannot be less than 11 digits')
   .max(11, 'Exceeded characters for phone number')

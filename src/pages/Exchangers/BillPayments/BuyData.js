@@ -8,11 +8,12 @@ import {Form, Formik} from 'formik'
 import {buyDataValidator} from '../../../validationSchema/validator'
 import { getWalletBalance } from '../../../store/actions/wallet';
 import { clearPayStatus, getBillerCategories, PayBill } from '../../../store/actions/bills';
-import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const BuyDataPage = ({walletBalance, fetchWallet, fetchCategory, category, pay, clearPay, paysuccess }) => {
 
-    const history = useHistory();
+    const navigate = useNavigate()
+
     
     useEffect(()=>{
         fetchWallet()
@@ -56,11 +57,11 @@ const BuyDataPage = ({walletBalance, fetchWallet, fetchCategory, category, pay, 
      useEffect(()=>{
         if(paysuccess){
             setTimeout(()=>{
-                history.push('/my-wallet')
+                navigate('/my-wallet')
             },3000)
         clearPay()
         }
-    },[history, paysuccess, clearPay])
+    },[navigate, paysuccess, clearPay])
 
 
 
