@@ -238,7 +238,7 @@ const UserTransactionDetails = (props) => {
                         <p className="mb-0 mt-1" style={{ fontSize: 14 }}>
                           {transaction.hasOwnProperty("declinedReason")
                             ? transaction.declinedReason
-                            : "Card not valid!"}
+                            : "Crypto not valid!"}
                         </p>
                       </div>
                     ) : (
@@ -249,7 +249,7 @@ const UserTransactionDetails = (props) => {
                     {/* amount */}
                     <div className="">
                       <h6 className="mb-0" style={{ fontWeight: "bold" }}>
-                        Card Name
+                        Crypto Name
                       </h6>
                       <p className="mb-0 mt-1" style={{ fontSize: 14 }}>
                         {transaction.subCategoryDetails.subcategoryname}
@@ -259,7 +259,7 @@ const UserTransactionDetails = (props) => {
                     {/* amount */}
                     <div className=" mt-3">
                       <h6 className="mb-0" style={{ fontWeight: "bold" }}>
-                        Card Category
+                        Crypto Category
                       </h6>
                       <p className="mb-0 mt-1" style={{ fontSize: 14 }}>
                         {transaction.subCategoryDetails.categoryname}

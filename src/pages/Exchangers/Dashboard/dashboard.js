@@ -28,7 +28,7 @@ const UserDashboard = (props) => {
     
     const columns = [
         {
-          name: "Card Name",
+          name: "Crypto Name",
           cell: row => <span
           > 
         { row['subCategoryDetails']['subcategoryname']  }

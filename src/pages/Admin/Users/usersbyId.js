@@ -93,7 +93,7 @@ const UsersDetails = (props) => {
 
     const columns = [
         {
-            name: "Card Category",
+            name: "Crypto Category",
             cell: row => <span
                 > 
               { row['subCategoryDetails']['categoryname']  }
@@ -101,7 +101,7 @@ const UsersDetails = (props) => {
                 sortable: true
           },
           {
-            name: "Card Name",
+            name: "Crypto Name",
             cell: row => <span
             > 
           { row['subCategoryDetails']['subcategoryname']  }

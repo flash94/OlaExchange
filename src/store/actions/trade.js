@@ -20,7 +20,7 @@ export const UploadGiftCardImage = (value, index) => {
         if (res.status === 201) {
               var image = res.data.imageUrl
               // stop loader after success
-              cogoToast.success('Card uploaded successfully!')
+              cogoToast.success('Crypto uploaded successfully!')
 
                    // check for index and upload
               switch(index){

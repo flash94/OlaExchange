@@ -305,7 +305,7 @@ const UserTradeDetails = (props) => {
                         <hr />
 
                         
-                        {/* Card layout */}
+                        {/* Crypto layout */}
                         <div className="mt-4 mb-4 card-head">
                             <div style={{display: 'flex', alignItems: 'center',}}>
                                 <div style={{width: '50px', height: '50px', borderRadius: '50%', background: '#FFDDD2', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -324,15 +324,15 @@ const UserTradeDetails = (props) => {
                           <hr />
 
                           
-                        {/* Card info layout */}
+                        {/* Crypto info layout */}
                         <div className="row mt-4 mb-4">
                             <div className="col-lg-7">
                                 {/* general information */}
                                 <div>
-                                    <h6 style={{fontWeight: 'bold'}}>Gift Card Details</h6>
+                                    <h6 style={{fontWeight: 'bold'}}>Gift Crypto Details</h6>
                                 </div>
 
-                                {/* Card details */}
+                                {/* Crypto details */}
                                 <div className="row mt-4">
                                     <div className="col-lg-6">
                                         <p className="mb-0" >Category</p>

@@ -22,7 +22,7 @@ const AdminDashboard = (props) => {
     
 const columns = [
     {
-      name: "Card Category",
+      name: "Crypto Category",
       cell: row => <span
           > 
         { row['subCategoryDetails']['categoryname']  }
@@ -30,7 +30,7 @@ const columns = [
           sortable: true
     },
     {
-      name: "Card Name",
+      name: "Crypto Name",
       cell: row => <span
       > 
     { row['subCategoryDetails']['subcategoryname']  }
