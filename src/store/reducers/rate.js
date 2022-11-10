@@ -9,7 +9,8 @@ const initState = {
     maxAmount: 0,
     tradeamount: 0,
     userminAmount: 0,
-    usermaxAmount: 0
+    usermaxAmount: 0,
+    cryptoProducts: []
   };
   
   const rateReducer = (state = initState, action) => {
@@ -99,6 +100,28 @@ const initState = {
                 ...state,
                 tradeamount: 0
             }
+        case "PRODUCT_CREATION_SUCCESS":
+            return{
+                ...state,
+                category: action.data
+            }
+        case "PRODUCT_CREATION_FAIL":
+            return{
+                ...state,
+                category: action.data
+            }
+        case "allProducts":
+            console.log(action.data)
+            return{
+                ...state,
+                cryptoProducts: action.data.data
+            }
+        case "allProducts_FAIL":
+            return{
+                ...state,
+                cryptoProducts: action.data
+            }
+            
       default:
         return state;
     }

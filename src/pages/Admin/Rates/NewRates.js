@@ -3,7 +3,7 @@ import Sidebar from '../../../components/Sidebar/Sidebar';
 import {Form, Formik} from 'formik'
 import {addGiftCardValidator} from '../../../validationSchema/validator'
 import {connect} from 'react-redux'
-import { getRateCategory } from '../../../store/actions/rate';
+import { createNewProduct, getRateCategory } from '../../../store/actions/rate';
 import {AddGiftCard, AddNewGiftCard} from '../../../store/actions/admin'
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -13,7 +13,7 @@ import {useNavigate} from 'react-router-dom'
 
 const AdminNewRates = (props) => {
 
-    const {fetchCategory, category, addRate, addNewRate, userRole} = props
+    const {fetchCategory, category, addRate, addNewRate, userRole, addNewProduct} = props
 
     const [newCategory, setNewCategory] = useState('')
     const cryptoCoins = ["Bitcoin", "Ethereum", "BNB", "USDT"]
@@ -22,64 +22,55 @@ const AdminNewRates = (props) => {
 
     const navigate = useNavigate();
 
-    useEffect(() =>{
-        fetchCategory()
-  }, [fetchCategory])
+//     useEffect(() =>{                                                                                                                                                                                 
+//         fetchCategory()
+//   }, [fetchCategory])
 
     const handleSubmit = async (values, setSubmitting) =>{
-        console.log(values)
+        console.log("submitting now")
+        console.log("values")
         // api call to add new cryptos
         // check if it is a new category or existing
         if(values.newcategory === ''){
-            if(value === ''){
-                cogoToast.info('Terms and Conditions is required')
-            }
-            else{
+
                 let resp = {
-                    categoryId : values.category,
-                    subcategoryname: values.subcategory,
-                    termsandconditions: value,
-                    nairarate: values.rate,
-                    btcrate: "0",
-                    cardapproveltime: "0",
-                    minimumAmount:  values.minAmount,
-                    maximumAmount: values.maxAmount
+                    productName : values.category,
+                    unitPrice: values.unitprice
                 }
                 // make api call to add to an Existing category a crypto
-               await addRate(resp)
+               await addNewProduct(resp)
 
             //    route
             setTimeout(() => {
                 navigate('/admin/rates')
             }, 1000);
       
-            }
+            
          }
         if(values.category === 'other'){
-            if(value === ''){
-                cogoToast.info('Terms and Conditions is required')
-            }
-            else{    
+   
                 let result = {
                     categoryId : "",
-                    categoryname: values.newcategory,
-                    subcategoryname: values.subcategory,
-                    termsandconditions: value,
-                    nairarate: values.rate,
-                    btcrate: "0",
-                    cardapproveltime: "0",
-                    minimumAmount:  values.minAmount,
-                    maximumAmount: values.maxAmount
+                    productName : values.newcategory,
+                    unitPrice: values.unitprice
+                    // categoryname: values.newcategory,
+                    // subcategoryname: values.subcategory,
+                    // termsandconditions: value,
+                    // nairarate: values.rate,
+                    // btcrate: "0",
+                    // cardapproveltime: "0",
+                    // minimumAmount:  values.minAmount,
+                    // maximumAmount: values.maxAmount
                 }
                 // make api call to add a new crypto entirely with a new category
-            await addNewRate(result)
+            await addNewProduct(result)
 
              //    route
              setTimeout(() => {
                 navigate('/admin/rates')
             }, 1000);
 
-          }
+          
         }
     }
 
@@ -110,11 +101,12 @@ const AdminNewRates = (props) => {
                      </div>
 
                     <Formik
-                onSubmit={(values, {setSubmitting, resetForm, setFieldValue}) =>
+                onSubmit={(values, {setSubmitting, resetForm, setFieldValue}) => 
                     handleSubmit(values, setSubmitting, resetForm, setFieldValue)
+                    
                     }
-                validationSchema={addGiftCardValidator}
-                initialValues={{ category: "", subcategory: "", newcategory: "", minAmount: "", maxAmount: "", rate: "", terms: value ? value : ""}}
+                //validationSchema={addGiftCardValidator}
+                initialValues={{ category: "", newcategory: "", unitquantity: "", rate: ""}}
               >
                   {({
                       handleChange,
@@ -141,23 +133,21 @@ const AdminNewRates = (props) => {
                                     onBlur={handleBlur}
                                     className="form-control select-style" 
                                     id="category">
-                                    <option defaultValue="" disabled>--Select--</option>
+                                    <option defaultValue="--Select--">--Select--</option>
                                     {cryptoCoins.map((opt, index) => {
                                             return <option key={index} value={opt}>{opt}</option>
                                         })}
                                     <option value="other">Others</option>
                                    
                                 </select>
-                                <small style={{ color: "#dc3545" }}>
-                                  {touched.category && errors.category}
-                              </small>
+                               
                             </div>
 
                             {/* New Category */}
                             {
                                 newCategory !== '' ?
                                     <div className="form-group">
-                                    <label htmlFor="subcategory">New Category</label>
+                                    <label htmlFor="newcategory">New Category</label>
                                     <input className="form-control input-style"
                                     type="text"
                                     id="newcategory"
@@ -165,9 +155,7 @@ const AdminNewRates = (props) => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     placeholder="" />
-                                    <small style={{ color: "#dc3545" }}>
-                                        {touched.newcategory && errors.newcategory}
-                                    </small>
+                                    
                                  </div>
                                  :
                                  ''
@@ -208,32 +196,28 @@ const AdminNewRates = (props) => {
                             
                              {/* Unit Amount */}
                              <div className="form-group">
-                              <label htmlFor="maxAmount">Unit Quantity</label>
+                              <label htmlFor="unitquantity">Unit Quantity</label>
                               <input className="form-control input-style"
-                              type="tel"
-                              id="maxAmount"
-                              value={values.maxAmount}
+                              type="number"
+                              id="unitquantity"
+                              value={values.unitquantity}
                               onChange={handleChange}
                               onBlur={handleBlur}
                               placeholder="" />
-                               <small style={{ color: "#dc3545" }}>
-                                  {touched.maxAmount && errors.maxAmount}
-                              </small>
+                               
                             </div>
 
                             {/* rate */}
                             <div className="form-group">
-                              <label htmlFor="rate">Rate(USD)</label>
+                              <label htmlFor="unitprice">Unit Price(USD)</label>
                               <input className="form-control input-style"
-                              type="tel"
-                              id="rate"
-                              value={values.rate}
+                              type="number"
+                              id="unitprice"
+                              value={values.unitprice}
                               onChange={handleChange}
                               onBlur={handleBlur}
                               placeholder="" />
-                               <small style={{ color: "#dc3545" }}>
-                                  {touched.rate && errors.rate}
-                              </small>
+                               
                             </div>
 
                             {/* <div className="form-group">
@@ -265,7 +249,7 @@ const AdminNewRates = (props) => {
                         <div className="text-center">
                             <button
                             type="submit"
-                            disabled={isSubmitting || userRole === 'SubAdmin'}
+                            // disabled={isSubmitting || userRole === 'SubAdmin'}
                              className="btn btn-pinkOla mt-3">Add Crypto Rate</button>
                          </div>
                       </Form>
@@ -299,7 +283,8 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         fetchCategory: () => dispatch(getRateCategory()),
         addRate: (val) => dispatch(AddGiftCard(val)),
-        addNewRate: (val) => dispatch(AddNewGiftCard(val))
+        addNewRate: (val) => dispatch(AddNewGiftCard(val)),
+        addNewProduct: (val) => dispatch(createNewProduct(val))
     }
 }
  

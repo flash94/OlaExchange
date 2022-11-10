@@ -4,52 +4,42 @@ import DataTable from 'react-data-table-component'
 import {useNavigate} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { deleteGiftCards, getGiftCards } from '../../../store/actions/admin';
+import {getCryptoProducts} from '../../../store/actions/rate'
 import Moment from 'react-moment'
 
 const AdminRates = (props) => {
 
-  const {cards, getRates, userRole, deleteRates} = props
+  const {cards, getRates, userRole, deleteRates, getProducts} = props
 
   const navigate = useNavigate();
 
   // fetch all pending trades on load of page
   useEffect(() =>{
-    getRates()
-  }, [getRates])
+    getProducts("")
+    
+  }, [getProducts])
 
     const columns = [
         {
-          name: "Category",
-          selector: "categoryname",
+          name: "Product Name",
+          selector: "productName",
           sortable: true
         },
         {
-          name: "SubCategory",
-          selector: "subcategoryname",
-          sortable: true
-        },
-        {
-          name: "Minimum Amount",
-          cell: row => <span> 
-                  {`${row.minimumAmount}`}
-          </span>
-        },
-        {
-            name: "Maximum Amount",
-            cell: row => <span> 
-                    {`${row.maximumAmount}`}
-            </span>
-          },
-        {
-            name: "Naira Rate",
-            selector: "nairarate",
+            name: "Unit Price (USD)",
+            selector: "unitPrice",
             sortable: true,
+          },
+          {
+            name: "Currency",
+            selector: "currency",
+            sortable: true
           },
           {
             name: "Date Added",
             cell: row => <span>
             <Moment format="MMMM Do, YYYY">
-            {row.createdAt}
+            {row.dateCreated}
             </Moment>
         </span>
         },  
@@ -60,7 +50,7 @@ const AdminRates = (props) => {
             <button
             className="btn btn-sm btn-view"
             onClick={() => {
-                ViewTransact(row.id)}}
+                ViewTransact(row._id)}}
              >View</button>,
           },
           {
@@ -71,7 +61,7 @@ const AdminRates = (props) => {
             disabled={userRole === 'SubAdmin'}
             className="btn btn-sm btn-view"
             onClick={() => {
-                DeleteTransact(row.id, row.categoryId)}}
+                DeleteTransact(row._id)}}
              >Delete</button>,
           }
       ];
@@ -116,7 +106,7 @@ const AdminRates = (props) => {
                 {/* rates table */}
                 <div className="mt-4 mb-5">
                          <DataTable
-                            title="Rates Table"
+                            title="Crypto Products Table"
                             columns={columns}
                             data={cards}
                             pagination
@@ -132,8 +122,12 @@ const AdminRates = (props) => {
 }
 
 const mapStateToProps = (state) =>{
+  // let xcards = state.rate.cryptoProducts
+  // console.log("xcards")
+  // console.log(xcards)
+
   return{
-    cards: state.admin.cryptos,
+    cards : state.rate.cryptoProducts,
     userRole: state.auth.role
   } 
 }
@@ -141,6 +135,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
   return{
     getRates : (status) => dispatch(getGiftCards(status)),
+    getProducts : (status) => dispatch(getCryptoProducts(status)),
     deleteRates : (id, categoryId) => dispatch(deleteGiftCards(id, categoryId)),
   }
 }

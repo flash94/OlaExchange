@@ -21,6 +21,30 @@ export const getRateCategory = (val) => {
   };
 };
 
+// create new product rate
+export const createNewProduct = (product) => {
+  console.log(product)
+  return async (dispatch, getState) => {
+    try {
+      const res = await PostApi("product", {
+                   productName: product.productName,
+                   currency: "USD",
+                   unitPrice: product.unitPrice,
+                  }, "", "application/json")
+      if (res.status === 201) {
+        dispatch({ type: "PRODUCT_CREATION_SUCCESS", data: res.data });
+        cogoToast.success("Product Added Successfully");
+      }
+      if(res.status === 400){
+        dispatch({ type: "PRODUCT_CREATION_FAIL", err: res.data});
+        cogoToast.error('Product not added, Try Again Later!')
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  };
+}
+
 // export const getRateCategory = ()  =>{
 //     return async function(dispatch) {
 //          try {
@@ -44,6 +68,24 @@ export const getRateSubCategory = (val) => {
       }
       if(res.status === 400){
         dispatch({ type: "subCategory_Error", err: res.data });
+      }
+    } catch (err) {
+     console.log(err)
+    }
+  };
+};
+
+export const getCryptoProducts = (val) => {
+  return async (dispatch, getState) => {
+    try {
+      const res = await GetApi(val= "" ? "product" : "product/"+val);
+      if (res.status === 200) {
+        console.log("fetched all products...")
+        //console.log(res.data)
+        dispatch({ type: "allProducts", data: res.data});
+      }
+      if(res.status === 400){
+        dispatch({ type: "allProducts_Error", err: res.data });
       }
     } catch (err) {
      console.log(err)
